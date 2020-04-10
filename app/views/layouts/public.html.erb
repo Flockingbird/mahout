@@ -34,7 +34,9 @@
           </p>
         </div>
         <div class="col-lg-3 align-self-end">
-          <a href="#" class="btn btn-primary btn-lg float-right">Call to action!</a>
+          <%= link_to catalyst.call_to_action_label,
+                      catalyst.call_to_action_dest,
+                      class: "action btn btn-primary btn-lg float-right" %>
         </div>
       </div>
     </header>
