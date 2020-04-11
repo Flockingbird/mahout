@@ -1,0 +1,30 @@
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <img class="card-img-top" src="http://placehold.it/500x132" alt="">
+      <div class="card-body row">
+        <div class="col-4">
+          <img class="rounded-circle" src="http://placehold.it/100x100" alt="">
+        </div>
+        <div class="col-8">
+          <h4 class="card-title"><%= professional.name %></h4>
+          <p class="card-text">
+          <% if professional.location %>
+          📍 <%= professional.location %><br />
+          <% end %>
+          <strong><%= professional.company_name %></strong><br />
+          <% if professional.url %>
+            <%= link_to nil, professional.url %>
+          <% end %>
+          </p>
+        </div>
+        <% if professional.bio %>
+          <%=
+            bio = professional.bio.delete("\n")
+            simple_format(bio, {
+              class: 'text-truncate card-text mt-3 mx-3 font-weight-light' 
+            })
+          %>
+        <% end %>
+      </div>
+    </div>
+  </div>

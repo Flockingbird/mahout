@@ -43,35 +43,7 @@
 
     <!-- Page Features -->
     <div class="row">
-      <%- 31.times do |i| %>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x132" alt="">
-            <div class="card-body row">
-              <div class="col-4">
-                <img class="rounded-circle" src="http://placehold.it/100x100" alt="">
-              </div>
-              <div class="col-8">
-                <h4 class="card-title">James Richardson</h4>
-                <p class="card-text">
-                📍 San Fransisco, CA, USA <br />
-                <strong>Ja Rich B.V.</strong><br />
-                <%= link_to nil, 'http://jari.ch' %>
-                </p>
-              </div>
-              <p class="text-truncate card-text mt-3 mx-3 font-weight-light">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.  Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est
-              laborum.</p>
-            </div>
-          </div>
-        </div>
-      <%- end %>
+      <%= yield %>
     </div>
     <!-- /.row -->
 
