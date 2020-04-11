@@ -16,4 +16,17 @@ class ListProfessionalsTest < ApplicationSystemTestCase
       assert_link 'Schedule an Appointment', href: 'http://example.com/contact'
     end
   end
+
+  test 'anon visiting the index views professionals' do
+    visit root_url
+    
+    assert_selector('div.card', count: 2)
+    within 'div.container>div.row' do
+      assert_selector 'h4.card-title', text: 'Harry Potter'
+      assert_content 'Little Whinging'
+      assert_content 'Ministry of Magic'
+      assert_link 'http://ministry.gov.wz'
+      assert_content 'Had some beef with a snakey guy,'
+    end
+  end
 end
