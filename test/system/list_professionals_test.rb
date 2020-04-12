@@ -16,4 +16,26 @@ class ListProfessionalsTest < ApplicationSystemTestCase
       assert_link 'Schedule an Appointment', href: 'http://example.com/contact'
     end
   end
+
+  test 'anon visiting the index views professionals' do
+    visit root_url
+    
+    assert_selector('div.card', count: 2)
+    within 'div.container>div.row' do
+      assert_selector 'h4.card-title', text: 'Harry Potter'
+      assert_content 'Little Whinging'
+      assert_content 'Ministry of Magic'
+      assert_link 'http://ministry.gov.wz'
+      assert_content 'Had some beef with a snakey guy,'
+    end
+  end
+
+  test 'anon visits page 2 of an index with 22 professionals' do
+    Workflows::ProfileImporter.new(count: 20).call
+    assert_equal 22, Profile.count # Together with fixtures, should be 21
+    visit root_url
+    click_link "2"
+    # We have 21 items per page (7 rows of 3), so page 2 has one.
+    assert_selector('div.card', count: 1)
+  end
 end

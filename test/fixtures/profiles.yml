@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Harry Potter
+  location: Little Whinging
+  company_name: Ministry of Magic
+  url: http://ministry.gov.wz
+  bio: Had some beef with a snakey guy, now proud father and civil servant
+
+two:
+  name: Ron Weasly
+  location: The Burrow
+  company_name:
+  url:
+  bio: Carrottop, Auror and clumsy.
