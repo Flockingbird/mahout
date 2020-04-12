@@ -29,4 +29,13 @@ class ListProfessionalsTest < ApplicationSystemTestCase
       assert_content 'Had some beef with a snakey guy,'
     end
   end
+
+  test 'anon visits page 2 of an index with 22 professionals' do
+    Workflows::ProfileImporter.new(count: 20).call
+    assert_equal 22, Profile.count # Together with fixtures, should be 21
+    visit root_url
+    click_link "2"
+    # We have 21 items per page (7 rows of 3), so page 2 has one.
+    assert_selector('div.card', count: 1)
+  end
 end

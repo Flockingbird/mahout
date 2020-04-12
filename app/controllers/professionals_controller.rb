@@ -2,16 +2,20 @@ class ProfessionalsController < ApplicationController
   layout "public"
 
   def index
-    @professionals = find_resources
+    @pagy, @professionals = paged
   end
 
   private
 
-  def resource_scope
+  def scope
     Profile.all
   end
 
-  def find_resources
-    resource_scope
+  def resources
+    scope
+  end
+
+  def paged
+    pagy(resources)
   end
 end
