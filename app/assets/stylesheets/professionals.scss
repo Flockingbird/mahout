@@ -1,3 +1,9 @@
 // Place all the styles related to the professionals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.professional-card .card-header {
+  width: 100%;
+  height: 92px;
+  object-fit: cover;
+}
