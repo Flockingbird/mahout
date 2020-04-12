@@ -1,9 +1,19 @@
-<div class="col-lg-4 col-md-6 mb-4">
+<div class="col-lg-4 col-md-6 mb-4 professional-card">
     <div class="card h-100">
-      <img class="card-img-top" src="http://placehold.it/500x132" alt="">
+      <% if professional.header.attached? %>
+        <%= image_tag(
+          professional.header.variant(resize_to_fill: [348, 92]),
+          class: 'card-img-top') %>
+      <% else %>
+        <div class="card-header"></div>
+      <% end %>
       <div class="card-body row">
         <div class="col-4">
-          <img class="rounded-circle" src="http://placehold.it/100x100" alt="">
+          <% if professional.avatar.attached? %>
+            <%= image_tag(
+              professional.avatar.variant(resize_to_limit: [100, 100]),
+              class: 'rounded-circle') %>
+          <% end %>
         </div>
         <div class="col-8">
           <h4 class="card-title"><%= professional.name %></h4>
