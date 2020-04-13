@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_131932) do
+ActiveRecord::Schema.define(version: 2020_04_13_130444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2020_04_12_131932) do
     t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_activity_at", precision: 6, null: false
+    t.index ["last_activity_at"], name: "index_profiles_on_last_activity_at"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
