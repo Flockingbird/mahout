@@ -12,7 +12,7 @@ class ProfessionalsController < ApplicationController
   end
 
   def resources
-    scope
+    scope.by_activity
   end
 
   def paged

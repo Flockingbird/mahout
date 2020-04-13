@@ -6,4 +6,8 @@ class Profile < ApplicationRecord
   def self.timestamp_attributes_for_create
     super + ['last_activity_at']
   end
+
+  def self.by_activity
+    order(last_activity_at: :desc)
+  end
 end

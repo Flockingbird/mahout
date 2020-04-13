@@ -4,12 +4,14 @@ one:
   name: Harry Potter
   location: Little Whinging
   company_name: Ministry of Magic
+  last_activity_at: <%= DateTime.now - 1.days %>
   url: http://ministry.gov.wz
   bio: Had some beef with a snakey guy, now proud father and civil servant
 
 two:
   name: Ron Weasly
   location: The Burrow
+  last_activity_at: <%= DateTime.now %>
   company_name:
   url:
   bio: Carrottop, Auror and clumsy.
