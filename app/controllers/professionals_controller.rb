@@ -5,10 +5,18 @@ class ProfessionalsController < ApplicationController
     @pagy, @professionals = paged
   end
 
+  def show
+    @professional = resource
+  end
+
   private
 
   def scope
     Profile.all
+  end
+
+  def resource
+    scope.find(params[:id])
   end
 
   def resources

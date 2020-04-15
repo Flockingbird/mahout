@@ -1,0 +1,62 @@
+<div class="col-md-8 col-12 professional-detail">
+  <div class="row">
+    <% if @professional.header.attached? %>
+      <%= image_tag(
+        @professional.header.variant(resize_to_fill: [760, 180]),
+        class: 'rounded-top'
+      ) %>
+    <% end %>
+
+    <div class="col-4">
+      <% if @professional.avatar.attached? %>
+        <%= image_tag(
+          @professional.avatar.variant(resize_to_limit: [100, 100]),
+          class: 'rounded-circle avatar'
+        ) %>
+      <% end %>
+    </div>
+    <div class="col-8 pt-1 text-right">
+      <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i></button>
+      <button type="button" class="btn btn-secondary"><i class="fas fa-tags"></i></button>
+      <button type="button" class="btn btn-secondary"><i class="fas fa-sticky-note"></i></button>
+      <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i></button>
+    </div>
+
+    <div class="col-12">
+      <h4 class="title">
+        <%= link_to(@professional.name, professional_path(@professional)) %>
+      </h4>
+      <% if @professional.bio %>
+        <%= simple_format(@professional.bio, { class: 'font-weight-light' }) %>
+      <% end %>
+
+      <p class="text-muted inline-attributes">
+      <% if @professional.location %>
+        <span class="inline-attribute-item">
+        <i class="fas fa-map-marker"></i> <%= @professional.location %>
+        </span>
+      <% end %>
+      <% if @professional.company_name %>
+        <span class="inline-attribute-item">
+        <i class="fas fa-briefcase"></i> <%= @professional.company_name %>
+        </span>
+      <% end %>
+      <% if @professional.url %>
+        <span class="inline-attribute-item">
+        <i class="fas fa-link"></i> <%= link_to nil, @professional.url %>
+        </span>
+      <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      [CONTACT]
+    </div>
+  </div>
+</div>
+<div class="col-md-4 col-12" rel="aside">
+  <div class="row mx-0 bg-light">
+    TODO: ASIDE
+  </div>
+</div>
