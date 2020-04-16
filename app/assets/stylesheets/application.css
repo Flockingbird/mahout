@@ -15,6 +15,9 @@
  *= require_self
  */
 
+.professional-detail .placeholder.header-image {
+  height: 180px;
+}
 .professional-detail img.avatar {
   border: 3px solid #fff;
   margin-top: -56px;

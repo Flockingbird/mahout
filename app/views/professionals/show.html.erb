@@ -1,10 +1,12 @@
-<div class="col-md-8 col-12 professional-detail">
+<div class="col-md-8 col-12 professional-detail border rounded-top">
   <div class="row">
     <% if @professional.header.attached? %>
       <%= image_tag(
         @professional.header.variant(resize_to_fill: [760, 180]),
         class: 'rounded-top'
       ) %>
+    <% else %>
+      <div class="col-12 rounded-top bg-light placeholder header-image"></div>
     <% end %>
 
     <div class="col-4">
@@ -13,7 +15,9 @@
           @professional.avatar.variant(resize_to_limit: [100, 100]),
           class: 'rounded-circle avatar'
         ) %>
-      <% end %>
+     <% else %>
+       <%= image_tag(:default_avatar, class: 'rounded-circle avatar') %>
+     <% end %>
     </div>
     <div class="col-8 pt-1 text-right">
       <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i></button>
