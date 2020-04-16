@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        too_many: "has too many entries (maximum is %{count} entries)"
+        wrong_format: "is formatted wrong"

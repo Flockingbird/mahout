@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_130444) do
+ActiveRecord::Schema.define(version: 2020_04_16_094746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_130444) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "last_activity_at", precision: 6, null: false
+    t.jsonb "contact_details"
     t.index ["last_activity_at"], name: "index_profiles_on_last_activity_at"
   end
 
