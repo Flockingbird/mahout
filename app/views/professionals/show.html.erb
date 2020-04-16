@@ -31,7 +31,9 @@
         <%= link_to(@professional.name, professional_path(@professional)) %>
       </h4>
       <% if @professional.bio %>
-        <%= simple_format(@professional.bio, { class: 'font-weight-light' }) %>
+        <p class="font-weight-light">
+          <%= simplified_format(@professional.bio) %>
+        </p>
       <% end %>
 
       <p class="text-muted inline-attributes">
