@@ -15,6 +15,20 @@
  *= require_self
  */
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 120px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+}
+
 .professional-detail .placeholder.header-image {
   height: 180px;
 }
