@@ -16,7 +16,9 @@
           <% end %>
         </div>
         <div class="col-8">
-          <h4 class="card-title"><%= professional.name %></h4>
+          <h4 class="card-title">
+            <%= link_to(professional.name, professional_path(professional)) %>
+          </h4>
           <p class="card-text">
           <% if professional.location %>
           📍 <%= professional.location %><br />

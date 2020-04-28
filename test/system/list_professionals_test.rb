@@ -19,7 +19,7 @@ class ListProfessionalsTest < ApplicationSystemTestCase
 
   test 'anon visiting the index views professionals' do
     visit root_url
-    
+
     assert_selector('div.card', count: 2)
     within 'div.container>div.row' do
       assert_selector 'h4.card-title', text: 'Harry Potter'
