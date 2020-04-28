@@ -32,7 +32,7 @@ class ViewProfessionalTest < ApplicationSystemTestCase
     click_link "Harry Potter"
 
     assert_no_selector 'header.jumbotron' # ensure we don't have jumbotron
-    within "sidebar catalyst" do
+    within ".sidebar.catalyst" do
       assert_selector 'h1', text: 'Catalyst Inc.'
       assert_content '+31 6 12345678'
       assert_link 'https://cataly.st'
