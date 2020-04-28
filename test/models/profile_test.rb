@@ -11,6 +11,11 @@ class ProfileTest < ActiveSupport::TestCase
     assert_equal p.created_at, p.last_activity_at
   end
 
+  test "#contact_details is always an array" do
+    assert_kind_of Array, Profile.new.contact_details
+    assert_kind_of Array, Profile.new(contact_details: []).contact_details
+  end
+
   test "#contact_details with proper object is valid" do
     subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 't'}])
     subject.valid?

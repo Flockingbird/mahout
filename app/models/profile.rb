@@ -4,6 +4,14 @@ class Profile < ApplicationRecord
 
   has_one_attached :avatar
   has_one_attached :header
+  # Ensure formatted correct:
+  # [ { "key": "Home",
+  #     "type": "phone",
+  #     "value": +420 (252) 658-3548 },
+  #   { "key": "Work",
+  #     "type": "phone",
+  #     "value": 773-384-0939 },
+  # ]
   validate :validate_contact_details_entries
 
   # add last_activity_at as create timestamp
@@ -13,6 +21,10 @@ class Profile < ApplicationRecord
 
   def self.by_activity
     order(last_activity_at: :desc)
+  end
+
+  def contact_details
+    self[:contact_details] || []
   end
 
   private

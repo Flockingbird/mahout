@@ -14,4 +14,15 @@ class ViewProfessionalTest < ApplicationSystemTestCase
     assert_content 'Had some beef with a snakey guy,'\
                    ' now proud father and civil servant'
   end
+  test 'anon views a contact info on a profile detail page' do
+    visit root_url
+    click_link "Harry Potter"
+
+    within "table#contact" do
+      assert_content 'Home +420 (252) 658-3548'
+      assert_content 'Work 773-384-0939'
+      assert_link 'h.potter@ministry.gov.wz'
+      assert_link 'scarface@wmail.wz'
+    end
+  end
 end
