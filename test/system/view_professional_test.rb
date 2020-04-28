@@ -14,6 +14,7 @@ class ViewProfessionalTest < ApplicationSystemTestCase
     assert_content 'Had some beef with a snakey guy,'\
                    ' now proud father and civil servant'
   end
+
   test 'anon views a contact info on a profile detail page' do
     visit root_url
     click_link "Harry Potter"
@@ -23,6 +24,20 @@ class ViewProfessionalTest < ApplicationSystemTestCase
       assert_content 'Work 773-384-0939'
       assert_link 'h.potter@ministry.gov.wz'
       assert_link 'scarface@wmail.wz'
+    end
+  end
+
+  test 'anon views catalyst details in sidebar' do
+    visit root_url
+    click_link "Harry Potter"
+
+    assert_no_selector 'header.jumbotron' # ensure we don't have jumbotron
+    within "sidebar catalyst" do
+      assert_selector 'h1', text: 'Catalyst Inc.'
+      assert_content '+31 6 12345678'
+      assert_link 'https://cataly.st'
+
+      assert_link 'Schedule an Appointment', href: 'http://example.com/contact'
     end
   end
 end

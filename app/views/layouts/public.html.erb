@@ -18,37 +18,35 @@
 <body>
   <!-- Page Content -->
   <div class="container">
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <div class="row">
-        <div class=col-lg-3>
-          <%= image_tag(catalyst.logo, size: '200x200') %>
+    <% if catalyst_placement == :header %>
+      <!-- Jumbotron Header -->
+      <header class="jumbotron my-4">
+        <div class="row">
+          <div class=col-lg-3>
+            <%= image_tag(catalyst.logo, size: '200x200') %>
+          </div>
+          <div class="col-lg-6">
+            <h1 class="title"><%= catalyst.name %></h1>
+            <p class="lead">
+             <%= catalyst.phone %><br/>
+             <%= catalyst.address %><br/>
+             <%= mail_to catalyst.email %><br/>
+             <%= link_to nil, catalyst.url, target: '_blank' %>
+            </p>
+          </div>
+          <div class="col-lg-3 align-self-end">
+            <%= link_to catalyst.call_to_action_label,
+                        catalyst.call_to_action_dest,
+                        class: "action btn btn-primary btn-lg float-right" %>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <h1 class="title"><%= catalyst.name %></h1>
-          <p class="lead">
-           <%= catalyst.phone %><br/>
-           <%= catalyst.address %><br/>
-           <%= mail_to catalyst.email %><br/>
-           <%= link_to nil, catalyst.url, target: '_blank' %>
-          </p>
-        </div>
-        <div class="col-lg-3 align-self-end">
-          <%= link_to catalyst.call_to_action_label,
-                      catalyst.call_to_action_dest,
-                      class: "action btn btn-primary btn-lg float-right" %>
-        </div>
-      </div>
-    </header>
+      </header>
+    <% end %>
 
-    <!-- Page Features -->
     <div class="row">
       <%= yield %>
     </div>
-    <!-- /.row -->
-
   </div>
-  <!-- /.container -->
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

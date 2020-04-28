@@ -2,10 +2,12 @@ class ProfessionalsController < ApplicationController
   layout "public"
 
   def index
+    @catalyst_placement = :header
     @pagy, @professionals = paged
   end
 
   def show
+    @catalyst_placement = :aside
     @professional = resource
   end
 

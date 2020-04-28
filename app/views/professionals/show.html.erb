@@ -1,4 +1,4 @@
-<div class="col-md-8 col-12 professional-detail border rounded-top">
+<div class="col-md-7 col-12 professional-detail border rounded-top">
   <div class="row">
     <% if @professional.header.attached? %>
       <%= image_tag(
@@ -66,8 +66,17 @@
     </div>
   </div>
 </div>
-<div class="col-md-4 col-12" rel="aside">
-  <div class="row mx-0 bg-light">
-    TODO: ASIDE
-  </div>
+<div class="sidebar catalyst col-md-4 col-12 px-5 py-3 bg-light" rel="aside">
+  <p><%= @professional.name %> is a member at:</p>
+  <%= image_tag(catalyst.logo, size: '200x200') %>
+  <h1 class="title"><%= catalyst.name %></h1>
+  <p>
+  <%= catalyst.phone %><br/>
+  <%= catalyst.address %><br/>
+  <%= mail_to catalyst.email %><br/>
+  <%= link_to nil, catalyst.url, target: '_blank' %>
+  </p>
+  <%= link_to catalyst.call_to_action_label,
+    catalyst.call_to_action_dest,
+    class: "action btn btn-primary btn-lg" %>
 </div>
