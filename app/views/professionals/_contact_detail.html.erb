@@ -1,0 +1,10 @@
+<tr>
+  <th><%= contact_detail["key"] %></th>
+  <td>
+    <% if contact_detail["type"] == "email" %>
+      <%= mail_to(contact_detail["value"]) %>
+    <% else %>
+      <%= contact_detail["value"] %>
+    <% end %>
+  </td>
+</tr>
