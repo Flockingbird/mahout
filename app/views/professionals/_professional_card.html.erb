@@ -13,19 +13,29 @@
             <%= image_tag(
               professional.avatar.variant(resize_to_limit: [100, 100]),
               class: 'rounded-circle') %>
+          <% else %>
+            <%= image_tag(:default_avatar, class: 'rounded-circle avatar') %>
           <% end %>
         </div>
         <div class="col-8">
           <h4 class="card-title">
             <%= link_to(professional.name, professional_path(professional)) %>
           </h4>
-          <p class="card-text">
+          <p class="text-muted inline-attributes">
           <% if professional.location %>
-          📍 <%= professional.location %><br />
+            <span class="inline-attribute-item">
+              <i class="fas fa-map-marker"></i> <%= professional.location %>
+            </span><br/>
           <% end %>
-          <strong><%= professional.company_name %></strong><br />
+          <% if professional.company_name %>
+            <span class="inline-attribute-item">
+              <i class="fas fa-briefcase"></i> <%= professional.company_name %>
+            </span><br/>
+          <% end %>
           <% if professional.url %>
-            <%= link_to nil, professional.url %>
+            <span class="inline-attribute-item">
+              <i class="fas fa-link"></i> <%= link_to nil, professional.url %>
+            </span><br/>
           <% end %>
           </p>
         </div>

@@ -9,6 +9,8 @@ class ProfessionalsController < ApplicationController
   def show
     @catalyst_placement = :aside
     @professional = resource
+    @contact_details = decorate(resource.contact_details,
+                                Profile::ContactDetailViewModel)
   end
 
   private
