@@ -18,19 +18,19 @@ class ProfileTest < ActiveSupport::TestCase
   end
 
   test "#contact_details is an array of ContactDetail" do
-    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 't'}])
+    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 'phone'}])
     assert_kind_of Profile::ContactDetail, subject.contact_details.first
   end
 
   test "#contact_details with proper object is valid" do
-    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 't'}])
+    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 'phone'}])
     subject.valid?
     assert_empty subject.errors[:contact_details]
   end
 
   test "#contact_details with ContactDetail is valid" do
     subject = Profile.new(contact_details: [
-      Profile::ContactDetail.new(key: 'k', value: 'v', type: 't')
+      Profile::ContactDetail.new(key: 'k', value: 'v', type: 'phone')
     ])
     subject.valid?
     assert_empty subject.errors[:contact_details]
