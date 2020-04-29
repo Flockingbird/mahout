@@ -1,6 +1,5 @@
 class Profile < ApplicationRecord
   CD_ENTRIES_MAX = 255
-  CD_REQUIRED_ATTRS = %w(key type value)
 
   has_one_attached :avatar
   has_one_attached :header
@@ -24,26 +23,36 @@ class Profile < ApplicationRecord
   end
 
   def contact_details
-    self[:contact_details] || []
+    return [] unless self[:contact_details].is_a?(Array)
+    self[:contact_details].map do |cd|
+      if cd.is_a?(Profile::ContactDetail)
+        cd
+      else
+        Profile::ContactDetail.new(cd.symbolize_keys)
+      end
+    end
   end
 
   private
 
   def validate_contact_details_entries
-    return if contact_details.blank?
+    return if self[:contact_details].blank?
+
     limit_contact_details_entries
     format_contact_details_entries
+    valid_contact_details_entries
   end
 
   def format_contact_details_entries
-    # Must be array,
-    # all required keys must be set
-    # all entries must have values
-    wrong_format = (!contact_details.is_a?(Array) ||
-      contact_details.any? {|d| d.keys.sort != CD_REQUIRED_ATTRS } ||
-      contact_details.any? {|d| d.values.any?(&:blank?) })
+    return if self[:contact_details].is_a?(Array)
 
-    errors.add(:contact_details, :wrong_format) if wrong_format
+    errors.add(:contact_details, :wrong_format)
+  end
+
+  def valid_contact_details_entries
+    return if contact_details.all?(&:valid?)
+
+    errors.add(:contact_details, :wrong_format)
   end
 
   def limit_contact_details_entries
