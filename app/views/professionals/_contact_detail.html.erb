@@ -1,26 +1,9 @@
 <tr>
-  <th><%= contact_detail["key"] %></th>
+  <th><%= contact_detail.key %></th>
   <td>
-    <% if contact_detail["type"] == "email" %>
-      <%= mail_to(contact_detail["value"]) %>
-    <% elsif contact_detail["type"] == "phone" %>
-      <%= link_to(contact_detail["value"], "tel:#{contact_detail["value"]}") %>
-    <% else %>
-      <%= contact_detail["value"] %>
-    <% end %>
+    <%= formatted_contact_detail_value(contact_detail) %>
   </td>
   <td>
-    <% if contact_detail["type"] == "email" %>
-      <i class="fas fa-envelope"></i>
-    <% elsif contact_detail["type"] == "phone" %>
-      <i class="fas fa-phone"></i>
-      <i class="fas fa-sms"></i>
-    <% elsif contact_detail["type"] == "twitter" %>
-      <i class="fas fa-twitter"></i>
-    <% elsif contact_detail["type"] == "facebook" %>
-      <i class="fas fa-facebook"></i>
-    <% elsif contact_detail["type"] == "linkedin" %>
-      <i class="fas fa-linkedin"></i>
-    <% end %>
+    <%= formatted_contact_detail_icon(contact_detail) %>
   </td>
 </tr>

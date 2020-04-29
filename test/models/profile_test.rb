@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'minitest/mock'
 
 class ProfileTest < ActiveSupport::TestCase
   test "#by_activity sorts last active top" do
@@ -16,14 +17,27 @@ class ProfileTest < ActiveSupport::TestCase
     assert_kind_of Array, Profile.new(contact_details: []).contact_details
   end
 
+  test "#contact_details is an array of ContactDetail" do
+    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 'phone'}])
+    assert_kind_of Profile::ContactDetail, subject.contact_details.first
+  end
+
   test "#contact_details with proper object is valid" do
-    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 't'}])
+    subject = Profile.new(contact_details: [{key: 'k', value: 'v', type: 'phone'}])
+    subject.valid?
+    assert_empty subject.errors[:contact_details]
+  end
+
+  test "#contact_details with ContactDetail is valid" do
+    subject = Profile.new(contact_details: [
+      Profile::ContactDetail.new(key: 'k', value: 'v', type: 'phone')
+    ])
     subject.valid?
     assert_empty subject.errors[:contact_details]
   end
 
   test "#contact_details must be an array" do
-    subject = Profile.new(contact_details: { key: 'k', value: 'v', type: 't' })
+    subject = Profile.new(contact_details: { foo: "bar" })
     refute subject.valid?
     assert_includes subject.errors[:contact_details], "is formatted wrong"
   end
@@ -39,32 +53,16 @@ class ProfileTest < ActiveSupport::TestCase
       "has too many entries (maximum is 255 entries)"
   end
 
-  test "#contact_details must be key, value, type objects" do
-    invalid_items = [
-      { value: 'v', type: 't' },
-      { key: 'k', type: 't' },
-      { key: 'k', value: 'v' }
-    ]
-    invalid_items.each do |invalid_item|
-      subject = Profile.new(contact_details: [invalid_item])
-      refute subject.valid?
-      assert_includes subject.errors[:contact_details], "is formatted wrong"
-    end
-  end
+  test "#contact_details each entry must be valid" do
+    valid_detail = Minitest::Mock.new
+    invalid_detail = Minitest::Mock.new
+    valid_detail.expect :valid?, true
+    valid_detail.expect :as_json, { key: :value }, [Hash]
+    invalid_detail.expect :valid?, false
+    invalid_detail.expect :as_json, { key: :value }, [Hash]
 
-  test "#contact_details must have key, value, type set" do
-    invalid_items = [
-      { key: '', value: 'v', type: 't' },
-      { key: 'k', value: '', type: 't' },
-      { key: 'k', value: 'v', type: '' },
-      { key: ' ', value: 'v', type: 't' },
-      { key: "\n", value: 'v', type: 't' },
-      { key: nil, value: 'v', type: 't' },
-    ]
-    invalid_items.each do |invalid_item|
-      subject = Profile.new(contact_details: [invalid_item])
-      refute subject.valid?
-      assert_includes subject.errors[:contact_details], "is formatted wrong"
-    end
+    subject = Profile.new(contact_details: [valid_detail, invalid_detail])
+    refute subject.valid?
+    assert_includes subject.errors[:contact_details], "is formatted wrong"
   end
 end
