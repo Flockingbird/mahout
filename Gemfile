@@ -6,8 +6,6 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 gem 'minitest', '5.13.0'
-# Use Pagy for paging resources
-gem 'pagy', '~> 3.5'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
