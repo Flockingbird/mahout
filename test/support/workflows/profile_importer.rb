@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Workflows
   require 'csv'
   # Imports profiles from a CSV

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # As **catalyst of a business network**, when I buy a (trial of) mahout, then I
 # can fill it with details from my participants, so that I can showcase my
 # participants.

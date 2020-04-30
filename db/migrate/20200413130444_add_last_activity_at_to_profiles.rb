@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLastActivityAtToProfiles < ActiveRecord::Migration[6.0]
   class Profile < ApplicationRecord
   end

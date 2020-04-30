@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mahout
   # Instance settings
   class Application < Rails::Application
