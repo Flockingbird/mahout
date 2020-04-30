@@ -28,43 +28,10 @@ module Workflows
     private
 
     def data
-      {
-        harry: {
-          name: 'Harry Potter',
-          location: 'Little Whinging',
-          company_name: 'Ministry of Magic',
-          last_activity_at: DateTime.now - 1.days,
-          url: 'http://ministry.gov.wz',
-          bio: 'Had some beef with a snakey guy, now proud father and civil servant',
-          contact_details: [
-            {
-              key: 'Home',
-              value: '+420 (252) 658-3548',
-              type: 'phone'
-            },
-            {
-              key: 'Work',
-              value: '773-384-0939',
-              type: 'phone'
-            },
-            {
-              key: 'Work',
-              value: 'h.potter@ministry.gov.wz',
-              type: 'email'
-            },
-            {
-              key: 'Private',
-              value: 'scarface@wmail.wz',
-              type: 'email'
-            }
-          ]
-        },
-        ron: {
-          name: 'Ron Weasly',
-          location: 'The Burrow',
-          bio: 'Carrottop, Auror and clumsy.'
-        }
-      }
+      Psych.load(
+        File.read(Rails.root.join('test', 'fixtures', 'profiles.yml')),
+        symbolize_names: true
+      )
     end
   end
 end
