@@ -31,6 +31,17 @@ class ViewProfessionalTest < ApplicationSystemTestCase
     end
   end
 
+  test 'anon follows a friendly link to a profile page' do
+    Workflows::ProfileCreator.new(collection_attributes: [
+      { name: 'Patel', location: 'London' },
+      { name: 'Patel', location: 'Dublin' }
+    ]).call
+    visit root_url
+    patels = all('a', text: 'Patel')
+    assert_match %r{.*/professionals/patel-dublin$}, patels.first[:href]
+    assert_match %r{.*/professionals/patel$}, patels.last[:href]
+  end
+
   test 'anon views catalyst details in sidebar' do
     visit root_url
     click_link "Harry Potter"

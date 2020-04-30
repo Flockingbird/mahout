@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  extend FriendlyId
+
   CD_ENTRIES_MAX = 255
 
   has_one_attached :avatar
@@ -12,6 +14,8 @@ class Profile < ApplicationRecord
   #     "value": 773-384-0939 },
   # ]
   validate :validate_contact_details_entries
+
+  friendly_id :slug_candidates, use: :slugged
 
   # add last_activity_at as create timestamp
   def self.timestamp_attributes_for_create
@@ -34,6 +38,13 @@ class Profile < ApplicationRecord
   end
 
   private
+
+  def slug_candidates
+    [
+      :name,
+      [:name, :location]
+    ]
+  end
 
   def validate_contact_details_entries
     return if self[:contact_details].blank?
