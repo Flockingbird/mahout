@@ -3,8 +3,10 @@ require 'minitest/mock'
 
 class ProfileTest < ActiveSupport::TestCase
   test "#by_activity sorts last active top" do
-    assert_equal(['Ron Weasly', 'Harry Potter'], 
-                Profile.by_activity.pluck(:name))
+    Profile.create(name: 'Harry', last_activity_at: 2.days.ago)
+    Profile.create(name: 'Ron', last_activity_at: 1.days.ago)
+
+    assert_equal(['Ron', 'Harry'], Profile.by_activity.pluck(:name))
   end
 
   test "sets last_activity_at to created_at on initialize" do

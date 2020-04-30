@@ -20,7 +20,7 @@ class ProfessionalsController < ApplicationController
   end
 
   def resource
-    scope.find(params[:id])
+    scope.friendly.find(params[:id])
   end
 
   def resources

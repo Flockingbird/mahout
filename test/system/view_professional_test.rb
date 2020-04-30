@@ -4,6 +4,10 @@
 require 'application_system_test_case'
 
 class ViewProfessionalTest < ApplicationSystemTestCase
+  setup do
+    Workflows::ProfileCreator.new(fixtures: [:harry, :ron]).call
+  end
+
   test 'anon visits a profile detail page' do
     visit root_url
     click_link "Harry Potter"
@@ -25,6 +29,17 @@ class ViewProfessionalTest < ApplicationSystemTestCase
       assert_link 'h.potter@ministry.gov.wz'
       assert_link 'scarface@wmail.wz'
     end
+  end
+
+  test 'anon follows a friendly link to a profile page' do
+    Workflows::ProfileCreator.new(collection_attributes: [
+      { name: 'Patel', location: 'London' },
+      { name: 'Patel', location: 'Dublin' }
+    ]).call
+    visit root_url
+    patels = all('a', text: 'Patel')
+    assert_match %r{.*/professionals/patel-dublin$}, patels.first[:href]
+    assert_match %r{.*/professionals/patel$}, patels.last[:href]
   end
 
   test 'anon views catalyst details in sidebar' do

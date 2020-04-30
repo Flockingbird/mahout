@@ -32,6 +32,6 @@ module PublicHelper
     when :facebook then '<i class="fab fa-facebook"></i>'
     when :linkedin then '<i class="fab fa-linkedin"></i>'
     else ''
-    end
+    end.html_safe
   end
 end

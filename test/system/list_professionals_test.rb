@@ -1,6 +1,10 @@
 require 'application_system_test_case'
 
 class ListProfessionalsTest < ApplicationSystemTestCase
+  setup do
+    Workflows::ProfileCreator.new(fixtures: [:harry, :ron]).call
+  end
+
   test 'root page lists professionals' do
     visit root_url
     assert_selector 'header h1', text: 'Catalyst Inc.'
