@@ -9,7 +9,7 @@ module Workflows
     end
 
     def call
-      seed_csv = Rails.root.join('db', 'seeds', 'profiles.csv')
+      seed_csv = Rails.root.join('db/seeds/profiles.csv')
       model_class = Profile
 
       records = []

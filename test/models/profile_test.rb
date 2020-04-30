@@ -6,7 +6,7 @@ require 'minitest/mock'
 class ProfileTest < ActiveSupport::TestCase
   test '#by_activity sorts last active top' do
     Profile.create(name: 'Harry', last_activity_at: 2.days.ago)
-    Profile.create(name: 'Ron', last_activity_at: 1.days.ago)
+    Profile.create(name: 'Ron', last_activity_at: 1.day.ago)
 
     assert_equal(%w[Ron Harry], Profile.by_activity.pluck(:name))
   end
@@ -22,27 +22,27 @@ class ProfileTest < ActiveSupport::TestCase
   end
 
   test '#contact_details is an array of ContactDetail' do
-    subject = Profile.new(contact_details: [{ key: 'k', value: 'v', type: 'phone' }])
+    subject = Profile.new(contact_details: [valid_attributes])
     assert_kind_of Profile::ContactDetail, subject.contact_details.first
   end
 
   test '#contact_details with proper object is valid' do
-    subject = Profile.new(contact_details: [{ key: 'k', value: 'v', type: 'phone' }])
+    subject = Profile.new(contact_details: [valid_attributes])
     subject.valid?
     assert_empty subject.errors[:contact_details]
   end
 
   test '#contact_details with ContactDetail is valid' do
-    subject = Profile.new(contact_details: [
-                            Profile::ContactDetail.new(key: 'k', value: 'v', type: 'phone')
-                          ])
+    subject = Profile.new(
+      contact_details: [Profile::ContactDetail.new(valid_attributes)]
+    )
     subject.valid?
     assert_empty subject.errors[:contact_details]
   end
 
   test '#contact_details must be an array' do
     subject = Profile.new(contact_details: { foo: 'bar' })
-    refute subject.valid?
+    assert_not subject.valid?
     assert_includes subject.errors[:contact_details], 'is formatted wrong'
   end
 
@@ -52,7 +52,7 @@ class ProfileTest < ActiveSupport::TestCase
     end
 
     subject = Profile.new(contact_details: contact_details)
-    refute subject.valid?
+    assert_not subject.valid?
     assert_includes subject.errors[:contact_details],
                     'has too many entries (maximum is 255 entries)'
   end
@@ -66,7 +66,13 @@ class ProfileTest < ActiveSupport::TestCase
     invalid_detail.expect :as_json, { key: :value }, [Hash]
 
     subject = Profile.new(contact_details: [valid_detail, invalid_detail])
-    refute subject.valid?
+    assert_not subject.valid?
     assert_includes subject.errors[:contact_details], 'is formatted wrong'
+  end
+
+  private
+
+  def valid_attributes
+    @valid_attributes ||= { key: 'k', value: 'v', type: 'phone' }
   end
 end

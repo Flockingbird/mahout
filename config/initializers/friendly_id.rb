@@ -21,8 +21,9 @@ FriendlyId.defaults do |config|
   config.reserved_words = %w[new edit index session login logout users admin
                              stylesheets assets javascripts images]
 
-  # This adds an option to treat reserved words as conflicts rather than exceptions.
-  # When there is no good candidate, a UUID will be appended, matching the existing
+  # This adds an option to treat reserved words as conflicts rather than
+  # exceptions.  When there is no good candidate, a UUID will be appended,
+  # matching the existing
   # conflict behavior.
 
   # config.treat_reserved_as_conflict = true
@@ -64,15 +65,16 @@ FriendlyId.defaults do |config|
   #
   # config.slug_limit = 255
   #
-  # When FriendlyId can not generate a unique ID from your base method, it appends
-  # a UUID, separated by a single dash. You can configure the character used as the
-  # separator. If you're upgrading from FriendlyId 4, you may wish to replace this
-  # with two dashes.
+  # When FriendlyId can not generate a unique ID from your base method, it
+  # appends a UUID, separated by a single dash. You can configure the character
+  # used as the separator. If you're upgrading from FriendlyId 4, you may wish
+  # to replace this with two dashes.
   #
   # config.sequence_separator = '-'
   #
   # Note that you must use the :slugged addon **prior** to the line which
-  # configures the sequence separator, or else FriendlyId will raise an undefined
+  # configures the sequence separator, or else FriendlyId will raise an
+  # undefined
   # method error.
   #
   #  ## Tips and Tricks
@@ -84,10 +86,11 @@ FriendlyId.defaults do |config|
   # behavior by overriding the `should_generate_new_friendly_id?` method that
   # FriendlyId adds to your model. The change below makes FriendlyId 5.0 behave
   # more like 4.0.
-  # Note: Use(include) Slugged module in the config if using the anonymous module.
-  # If you have `friendly_id :name, use: slugged` in the model, Slugged module
-  # is included after the anonymous module defined in the initializer, so it
-  # overrides the `should_generate_new_friendly_id?` method from the anonymous module.
+  # Note: Use(include) Slugged module in the config if using the anonymous
+  # module.  If you have `friendly_id :name, use: slugged` in the model,
+  # Slugged module is included after the anonymous module defined in the
+  # initializer, so it overrides the `should_generate_new_friendly_id?` method
+  # from the anonymous module.
   #
   # config.use :slugged
   # config.use Module.new {

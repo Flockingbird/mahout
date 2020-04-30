@@ -1,0 +1,14 @@
+require: rubocop-rails
+Layout/LineLength:
+  Exclude:
+    - db/schema.rb
+    - db/migrate/*
+Metrics/BlockLength:
+  Exclude:
+    - db/schema.rb
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# Bas  Controller for all controllers
 class ApplicationController < ActionController::Base
   include Pagy::Backend
 

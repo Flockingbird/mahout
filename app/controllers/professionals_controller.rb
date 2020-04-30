@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# Controller for public profesionals
 class ProfessionalsController < ApplicationController
   layout 'public'
 

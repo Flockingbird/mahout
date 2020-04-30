@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# Add a timestamp used for ordering to profiles
 class AddLastActivityAtToProfiles < ActiveRecord::Migration[6.0]
   class Profile < ApplicationRecord
   end

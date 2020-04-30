@@ -51,7 +51,7 @@ class ListProfessionalsTest < ApplicationSystemTestCase
     # For now, depend on fixtures.
     visit root_url
     # Simply assert that Ron Weasly comes first
-    assert_text /Ron Weasly.*Harry Potter/m
+    assert_text(/Ron Weasly.*Harry Potter/m)
   end
 
   test 'anon visits page 2 of an index with 22 professionals' do

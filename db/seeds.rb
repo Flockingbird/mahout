@@ -2,24 +2,28 @@
 
 require 'csv'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# This file should contain all the record creation needed to seed the database
+# with its default values.  The data can then be loaded with the rails db:seed
+# command (or created alongside the database with db:setup).
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   movies = Movie.create(
+#    [{ name: 'Star Wars' }, { name: 'Lord of the Rings'  }]
+#   )
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Profiles
-seed_csv = Rails.root.join('db', 'seeds', 'profiles.csv')
+seed_csv = Rails.root.join('db/seeds/profiles.csv')
 
-avatar_files = Dir[Rails.root.join('db', 'seeds', 'avatars', '*.jpg')]
-header_images = Dir[Rails.root.join('db', 'seeds', 'headers', '*.jpg')]
+avatar_files = Dir[Rails.root.join('db/seeds/avatars/*.jpg')]
+header_images = Dir[Rails.root.join('db/seeds/headers/*.jpg')]
 
 model_class = Profile
 records = []
 
-contact_lines = CSV.read(Rails.root.join('db', 'seeds', 'contact_details.csv'), headers: true).to_enum
+csv_file = Rails.root.join('db/seeds/contact_details.csv')
+contact_lines = CSV.read(csv_file, headers: true).to_enum
 
 CSV.foreach(seed_csv, headers: true) do |row|
   contact_details = []
@@ -27,18 +31,12 @@ CSV.foreach(seed_csv, headers: true) do |row|
     next unless key && value
 
     type = case key
-           when 'Home', 'Work'
-             :phone
-           when 'Personal', 'Workemail'
-             :email
-           when 'Twitter'
-             :twitter
-           when 'Facebook'
-             :facebook
-           when 'Linkedin'
-             :linkedin
-           when 'Street Address'
-             :address
+           when 'Home', 'Work' then :phone
+           when 'Personal', 'Workemail' then :email
+           when 'Twitter' then :twitter
+           when 'Facebook' then :facebook
+           when 'Linkedin' then :linkedin
+           when 'Street Address' then :address
            end
     contact_details << { key: key, value: value, type: type }
   end
@@ -60,4 +58,4 @@ CSV.foreach(seed_csv, headers: true) do |row|
   record.save!
   records << record
 end
-puts "Imported #{records.count} #{model_class} records"
+Rails.logger.info "Imported #{records.count} #{model_class} records"

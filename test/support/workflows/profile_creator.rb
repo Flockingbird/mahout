@@ -29,7 +29,7 @@ module Workflows
 
     def data
       Psych.load(
-        File.read(Rails.root.join('test', 'fixtures', 'profiles.yml')),
+        File.read(Rails.root.join('test/fixtures/profiles.yml')),
         symbolize_names: true
       )
     end

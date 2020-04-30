@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# A profile is the displayable version of a user
 class Profile < ApplicationRecord
   extend FriendlyId
 
@@ -70,8 +72,8 @@ class Profile < ApplicationRecord
   end
 
   def limit_contact_details_entries
-    if contact_details.length > CD_ENTRIES_MAX
-      errors.add(:contact_details, :too_many, count: 255)
-    end
+    return if contact_details.length <= CD_ENTRIES_MAX
+
+    errors.add(:contact_details, :too_many, count: 255)
   end
 end

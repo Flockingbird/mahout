@@ -17,11 +17,16 @@ module PublicHelper
 
   def formatted_contact_detail_value(contact_detail)
     case contact_detail.type
-    when :email    then mail_to(contact_detail.value)
-    when :phone    then link_to(contact_detail.value, "tel:#{contact_detail.value}")
-    when :twitter  then link_to("@#{contact_detail.value}", "https://twitter.com/#{contact_detail.value}")
-    when :facebook then link_to(contact_detail.value, "https://www.facebook.com/#{contact_detail.value}")
-    when :linkedin then link_to(contact_detail.value, "https://linkedin.com/#{contact_detail.value}")
+    when :email
+      mail_to(contact_detail.value)
+    when :phone
+      link_to(contact_detail.value, "tel:#{contact_detail.value}")
+    when :twitter
+      link_to("@#{contact_detail.value}", "https://twitter.com/#{contact_detail.value}")
+    when :facebook
+      link_to(contact_detail.value, "https://www.facebook.com/#{contact_detail.value}")
+    when :linkedin
+      link_to(contact_detail.value, "https://linkedin.com/#{contact_detail.value}")
     else contact_detail.value
     end
   end
