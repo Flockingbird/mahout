@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class PublicHelperTest < ActionView::TestCase
   test 'simplified_format removes all tags with "sanitize"' do
@@ -75,6 +75,7 @@ class PublicHelperTest < ActionView::TestCase
     assert_equal '<i class="fab fa-linkedin"></i>',
                  formatted_contact_detail_icon(cd)
   end
+
   private
 
   def contact_detail(key: '', value: '', type: '')

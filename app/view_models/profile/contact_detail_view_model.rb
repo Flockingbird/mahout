@@ -10,5 +10,4 @@ class Profile::ContactDetailViewModel
   def type
     @resource.type.to_sym
   end
-
 end

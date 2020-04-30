@@ -28,6 +28,7 @@ class Profile < ApplicationRecord
 
   def contact_details
     return [] unless self[:contact_details].is_a?(Array)
+
     self[:contact_details].map do |cd|
       if cd.is_a?(Profile::ContactDetail)
         cd
@@ -42,7 +43,7 @@ class Profile < ApplicationRecord
   def slug_candidates
     [
       :name,
-      [:name, :location]
+      %i[name location]
     ]
   end
 

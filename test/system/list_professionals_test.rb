@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class ListProfessionalsTest < ApplicationSystemTestCase
   setup do
-    Workflows::ProfileCreator.new(fixtures: [:harry, :ron]).call
+    Workflows::ProfileCreator.new(fixtures: %i[harry ron]).call
   end
 
   test 'root page lists professionals' do
@@ -56,7 +56,7 @@ class ListProfessionalsTest < ApplicationSystemTestCase
     Workflows::ProfileImporter.new(count: 20).call
     assert_equal 22, Profile.count # Together with fixtures, should be 21
     visit root_url
-    click_link "2"
+    click_link '2'
     # We have 21 items per page (7 rows of 3), so page 2 has one.
     assert_selector('div.card', count: 1)
   end

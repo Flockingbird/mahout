@@ -1,5 +1,5 @@
 class ProfessionalsController < ApplicationController
-  layout "public"
+  layout 'public'
 
   def index
     @catalyst_placement = :header

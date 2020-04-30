@@ -10,7 +10,6 @@ require 'csv'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 # Profiles
 seed_csv = Rails.root.join('db', 'seeds', 'profiles.csv')
 
@@ -26,33 +25,34 @@ CSV.foreach(seed_csv, headers: true) do |row|
   contact_details = []
   contact_lines.next.each do |key, value|
     next unless key && value
+
     type = case key
-           when "Home", "Work"
+           when 'Home', 'Work'
              :phone
-           when "Personal", "Workemail"
+           when 'Personal', 'Workemail'
              :email
-           when "Twitter"
+           when 'Twitter'
              :twitter
-           when "Facebook"
+           when 'Facebook'
              :facebook
-           when "Linkedin"
+           when 'Linkedin'
              :linkedin
-           when "Street Address"
+           when 'Street Address'
              :address
            end
-    contact_details <<  { key: key, value: value, type: type }
+    contact_details << { key: key, value: value, type: type }
   end
 
   attrs = row.to_h.merge(contact_details: contact_details)
   record = model_class.find_or_initialize_by(attrs)
   # randomly add avatar
-  if (rand > 0.3)
+  if rand > 0.3
     file = avatar_files.sample
     record.avatar.attach(io: File.open(file), filename: File.basename(file))
   end
 
   # randomly add header
-  if (rand > 0.8)
+  if rand > 0.8
     file = header_images.sample
     record.header.attach(io: File.open(file), filename: File.basename(file))
   end

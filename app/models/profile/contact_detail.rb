@@ -6,7 +6,7 @@ class Profile::ContactDetail
 
   MAX_KEY_LENGTH = 100
   MAX_VALUE_LENGTH = 300
-  ALLOWED_TYPES = %w[address email facebook linkedin phone twitter]
+  ALLOWED_TYPES = %w[address email facebook linkedin phone twitter].freeze
 
   attr_reader :key, :value, :type
 

@@ -1,5 +1,5 @@
 module Workflows
-  require "csv"
+  require 'csv'
   # Imports profiles from a CSV
   class ProfileImporter
     def initialize(count: 1)

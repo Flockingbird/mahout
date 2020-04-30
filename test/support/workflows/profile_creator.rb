@@ -37,7 +37,7 @@ module Workflows
           contact_details: [
             {
               key: 'Home',
-              value:  '+420 (252) 658-3548',
+              value: '+420 (252) 658-3548',
               type: 'phone'
             },
             {
@@ -45,12 +45,12 @@ module Workflows
               value: '773-384-0939',
               type: 'phone'
             },
-            { 
+            {
               key: 'Work',
               value: 'h.potter@ministry.gov.wz',
               type: 'email'
             },
-            { 
+            {
               key: 'Private',
               value: 'scarface@wmail.wz',
               type: 'email'
