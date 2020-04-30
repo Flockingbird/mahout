@@ -4,6 +4,10 @@
 require 'application_system_test_case'
 
 class ViewProfessionalTest < ApplicationSystemTestCase
+  setup do
+    Workflows::ProfileCreator.new(fixtures: [:harry, :ron]).call
+  end
+
   test 'anon visits a profile detail page' do
     visit root_url
     click_link "Harry Potter"
