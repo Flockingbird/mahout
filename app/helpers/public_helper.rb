@@ -29,18 +29,11 @@ module PublicHelper
   # rubocop:enable Rails/OutputSafety
 
   def formatted_contact_detail_value(contact_detail)
-    case contact_detail.type
-    when :email
-      mail_to(contact_detail.value)
-    when :phone
-      link_to(contact_detail.value, "tel:#{contact_detail.value}")
-    when :twitter
-      link_to("@#{contact_detail.value}", "https://twitter.com/#{contact_detail.value}")
-    when :facebook
-      link_to(contact_detail.value, "https://www.facebook.com/#{contact_detail.value}")
-    when :linkedin
-      link_to(contact_detail.value, "https://linkedin.com/#{contact_detail.value}")
-    else contact_detail.value
+    method = "formatted_contact_detail_value_#{contact_detail.type}".to_sym
+    if respond_to?(method, true)
+      send(method, contact_detail)
+    else
+      contact_detail.value
     end
   end
 
@@ -61,4 +54,35 @@ module PublicHelper
     end.html_safe
   end
   # rubocop:enable Rails/OutputSafety
+
+  private
+
+  def formatted_contact_detail_value_email(contact_detail)
+    mail_to(contact_detail.value)
+  end
+
+  def formatted_contact_detail_value_phone(contact_detail)
+    link_to(contact_detail.value, "tel:#{contact_detail.value}")
+  end
+
+  def formatted_contact_detail_value_twitter(contact_detail)
+    link_to(
+      "@#{contact_detail.value}",
+      "https://twitter.com/#{contact_detail.value}"
+    )
+  end
+
+  def formatted_contact_detail_value_facebook(contact_detail)
+    link_to(
+      contact_detail.value,
+      "https://www.facebook.com/#{contact_detail.value}"
+    )
+  end
+
+  def formatted_contact_detail_value_linkedin(contact_detail)
+    link_to(
+      contact_detail.value,
+      "https://linkedin.com/#{contact_detail.value}"
+    )
+  end
 end
