@@ -59,6 +59,7 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ansi (1.5.0)
     ast (2.4.0)
     awesome_print (1.8.0)
     bindex (0.8.1)
@@ -116,6 +117,11 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    oga (2.15)
+      ast
+      ruby-ll (~> 2.1)
+    ogp (0.4.0)
+      oga (~> 2.15)
     pagy (3.7.5)
     parallel (1.19.1)
     parser (2.7.0.2)
@@ -172,6 +178,9 @@ GEM
     rubocop-rails (2.4.2)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
+    ruby-ll (2.1.2)
+      ansi
+      ast
     ruby-progressbar (1.10.1)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
@@ -244,6 +253,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   minitest (= 5.13.0)
+  ogp
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)

@@ -10,16 +10,18 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <%= yield :og_tags %>
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <title>Professionals</title>
+  <title><%= title %></title>
 </head>
 
 <body>
   <main role="main" class="flex-shrink-0">
     <!-- Page Content -->
     <div class="container">
-      <% if catalyst_placement == :header %>
+      <% if @catalyst_placement == :header %>
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
           <div class="row">

@@ -3,6 +3,16 @@
 require 'test_helper'
 
 class PublicHelperTest < ActionView::TestCase
+  test 'content_for :title sets the title' do
+    content_for :title, 'The title'
+    assert_equal 'The title', title
+  end
+
+  test 'content_for :title defaults to empty string' do
+    content_for :title, nil
+    assert_equal '', title
+  end
+
   test 'simplified_format removes all tags with "sanitize"' do
     text = '<foo/><p>bar</p>'
     assert_equal 'bar', simplified_format(text)

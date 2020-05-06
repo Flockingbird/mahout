@@ -52,6 +52,9 @@ group :development, :test do
 
   # On development and test, load env from disk
   gem 'dotenv-rails'
+
+  # In tests we parse the response and extract OG tags with ogp
+  gem 'ogp'
 end
 
 group :development do
