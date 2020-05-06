@@ -3,6 +3,10 @@
 ##
 # Helpers for public views and templates
 module PublicHelper
+  def title
+    content_for(:title) || ""
+  end
+
   def catalyst
     OpenStruct.new(Rails.application.config.catalyst)
   end

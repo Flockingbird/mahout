@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'application_system_test_case'
+require 'ogp' # For parsing OG tags
 
 class ListProfessionalsTest < ApplicationSystemTestCase
   setup do
@@ -61,5 +62,20 @@ class ListProfessionalsTest < ApplicationSystemTestCase
     click_link '2'
     # We have 21 items per page (7 rows of 3), so page 2 has one.
     assert_selector('div.card', count: 1)
+  end
+
+  # As a catalyst, when I share the link to the professionals on social media,
+  # then a card is rendered with a name, url, logo and title. So that
+  # others see a nice preview.
+  test 'link is shared on social media with og-tag support' do
+    visit root_url
+
+    assert_equal 'Professionals at Catalyst Inc.', page.title
+
+    open_graph = OGP::OpenGraph.new(page.html)
+    assert_equal 'Professionals at Catalyst Inc.', open_graph.title
+    assert_equal 'website', open_graph.type
+    assert_match(/catalyst_logo-.*\.png/, open_graph.image.url)
+    assert_equal page.current_url, open_graph.url
   end
 end

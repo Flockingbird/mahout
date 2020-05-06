@@ -10,9 +10,11 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <%= yield :og_tags %>
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <title>Professionals</title>
+  <title><%= title %></title>
 </head>
 
 <body>
