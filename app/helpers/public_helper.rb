@@ -4,7 +4,7 @@
 # Helpers for public views and templates
 module PublicHelper
   def title
-    content_for(:title) || ""
+    content_for(:title) || ''
   end
 
   def catalyst
