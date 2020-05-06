@@ -7,10 +7,18 @@ class PublicHelperTest < ActionView::TestCase
     content_for :title, 'The title'
     assert_equal 'The title', title
   end
-
   test 'content_for :title defaults to empty string' do
     content_for :title, nil
     assert_equal '', title
+  end
+
+  test 'content_for :meta_description sets the meta_description' do
+    content_for :meta_description, 'The description'
+    assert_equal 'The description', meta_description
+  end
+  test 'content_for :meta_description defaults to empty string' do
+    content_for :meta_description, nil
+    assert_equal '', meta_description
   end
 
   test 'simplified_format removes all tags with "sanitize"' do

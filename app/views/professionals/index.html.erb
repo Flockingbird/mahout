@@ -1,7 +1,9 @@
 <% content_for :title, "Professionals at #{catalyst.name}" %>
+<% content_for :meta_description, "All professionals at #{catalyst.name} in an index" %>
 
 <% content_for :og_tags do %>
   <meta property="og:title" content="<%= title %>" />
+  <meta property="og:description" content="<%= meta_description %>" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:image" content="<%= image_url(catalyst.logo) %>" />

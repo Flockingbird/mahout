@@ -70,11 +70,19 @@ class ListProfessionalsTest < ApplicationSystemTestCase
   test 'link is shared on social media with og-tag support' do
     visit root_url
 
-    assert_equal 'Professionals at Catalyst Inc.', page.title
+    title = 'Professionals at Catalyst Inc.'
+    description = 'All professionals at Catalyst Inc. in an index'
+
+    assert_equal title, page.title
+    assert_selector(
+      "meta[name='description'][content='#{description}']",
+      visible: false
+    )
 
     open_graph = OGP::OpenGraph.new(page.html)
-    assert_equal 'Professionals at Catalyst Inc.', open_graph.title
+    assert_equal title, open_graph.title
     assert_equal 'website', open_graph.type
+    assert_equal description, open_graph.description
     assert_match(/catalyst_logo-.*\.png/, open_graph.image.url)
     assert_equal page.current_url, open_graph.url
   end

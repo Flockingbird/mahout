@@ -7,6 +7,10 @@ module PublicHelper
     content_for(:title) || ''
   end
 
+  def meta_description
+    content_for(:meta_description) || ''
+  end
+
   def catalyst
     OpenStruct.new(Rails.application.config.catalyst)
   end
