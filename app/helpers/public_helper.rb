@@ -15,9 +15,18 @@ module PublicHelper
     @catalyst_placement
   end
 
+  ##
+  # Simplified format of a user-generated text.
+  #
+  # This calls sanitize to remove all (unsafe) HTML and then replaces newlines
+  # with break tags.
+  #
+  # rubocop:disable Rails/OutputSafety
+  # We use sanitize to remove all HTML so it is safe.
   def simplified_format(text)
     sanitize(text, tags: [], attributes: []).gsub(/\n+/, '<br/>').html_safe
   end
+  # rubocop:enable Rails/OutputSafety
 
   def formatted_contact_detail_value(contact_detail)
     case contact_detail.type
@@ -35,6 +44,12 @@ module PublicHelper
     end
   end
 
+  ##
+  # Renders an icon with font-awesome based on a contact_detailt item type
+  #
+  # rubocop:disable Rails/OutputSafety
+  # We craft only hardcoded html and use no user-input, so the generated HTML
+  # can be considered safe.
   def formatted_contact_detail_icon(contact_detail)
     case contact_detail.type
     when :email    then '<i class="fas fa-envelope"></i>'
@@ -45,4 +60,5 @@ module PublicHelper
     else ''
     end.html_safe
   end
+  # rubocop:enable Rails/OutputSafety
 end
