@@ -11,10 +11,6 @@ module PublicHelper
     OpenStruct.new(Rails.application.config.catalyst)
   end
 
-  def catalyst_placement
-    @catalyst_placement
-  end
-
   ##
   # Simplified format of a user-generated text.
   #
