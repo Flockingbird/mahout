@@ -29,7 +29,7 @@ clean:
 	docker rm $(CONTAINER_NAME)
 
 run:
-	$(CMD_PREFIX) foreman start
+	$(CMD_PREFIX) rails server
 
 seed:
 	$(CMD_PREFIX) rails db:seed
