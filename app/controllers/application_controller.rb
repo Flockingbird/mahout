@@ -5,8 +5,11 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
 
-  ## TODO: When resource is a model, decorate a single item instead of mapping
   def decorate(resource, klass)
-    resource.map { |object| klass.new(object) }
+    if resource.respond_to?(:map)
+      resource.map { |object| klass.new(object) }
+    else
+      klass.new(resource)
+    end
   end
 end
