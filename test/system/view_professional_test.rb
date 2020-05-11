@@ -57,4 +57,29 @@ class ViewProfessionalTest < ApplicationSystemTestCase
       assert_link 'Schedule an Appointment', href: 'http://example.com/contact'
     end
   end
+
+  # As a participant, when I share the link to my profile
+  # then a card is rendered with a name, url, logo and title. So that
+  # others see a nice preview.
+  test 'detail link is shared on social media with og-tag support' do
+    visit root_url
+    click_link 'Harry Potter'
+
+    title = 'Get in contact with Harry Potter'
+    description = 'Harry Potter contact details.'
+
+    assert_equal title, page.title
+    assert_selector(
+      "meta[name='description'][content='#{description}']",
+      visible: false
+    )
+
+    open_graph = OGP::OpenGraph.new(page.html)
+    assert_equal title, open_graph.data['title']
+    assert_equal 'profile', open_graph.data['type']
+    assert_equal 'Harry Potter', open_graph.data['profile:first_name']
+    assert_equal description, open_graph.data['description']
+    assert_match(/default_avatar.*\.png/, open_graph.data['image'])
+    assert_equal page.current_url, open_graph.data['url']
+  end
 end

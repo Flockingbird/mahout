@@ -9,17 +9,13 @@
       <% end %>
       <div class="card-body row">
         <div class="col-4">
-          <% if professional.avatar.attached? %>
-            <%= image_tag(
-              professional.avatar.variant(resize_to_limit: [100, 100]),
-              class: 'rounded-circle') %>
-          <% else %>
-            <%= image_tag(:default_avatar, class: 'rounded-circle avatar') %>
-          <% end %>
+          <%= image_tag(
+            professional.avatar_with_fallback(resize_to_limit: [100, 100]),
+            class: 'rounded-circle avatar') %>
         </div>
         <div class="col-8">
           <h4 class="card-title">
-            <%= link_to(professional.name, professional_path(professional)) %>
+            <%= link_to(professional.name, professional_path(professional.friendly_id)) %>
           </h4>
           <p class="text-muted inline-attributes">
           <% if professional.location %>
