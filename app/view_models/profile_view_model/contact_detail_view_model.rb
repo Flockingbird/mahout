@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Profile
+class ProfileViewModel
   ##
   # View model for Profile::ContactDetail
   class ContactDetailViewModel

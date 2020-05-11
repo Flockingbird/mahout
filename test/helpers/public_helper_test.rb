@@ -99,7 +99,7 @@ class PublicHelperTest < ActionView::TestCase
   private
 
   def contact_detail(key: '', value: '', type: '')
-    Profile::ContactDetailViewModel.new(
+    ProfileViewModel::ContactDetailViewModel.new(
       OpenStruct.new(key: key, value: value, type: type)
     )
   end
