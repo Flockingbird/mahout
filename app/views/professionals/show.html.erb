@@ -6,7 +6,7 @@
   <meta property="og:description" content="<%= meta_description %>" />
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="<%= request.original_url %>" />
-  <meta property="og:image" content="<%= @professional.avatar_with_fallback(resize_to_limit: [100, 100]) %>" />
+  <meta property="og:image" content="<%= any_image_url(@professional.avatar_with_fallback(resize_to_limit: [100, 100])) %>" />
   <meta property="og:profile:first_name" content="<%= @professional.name %>" />
 <% end %>
 
