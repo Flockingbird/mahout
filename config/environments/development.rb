@@ -65,5 +65,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Allow ngrok to access dev
-  config.hosts << '98733280.ngrok.io'
+  config.hosts << /[a-z0-9]+\.ngrok\.io/
 end
