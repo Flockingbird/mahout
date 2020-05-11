@@ -9,7 +9,6 @@
   <meta property="og:image" content="<%= image_url(catalyst.logo) %>" />
 <% end %>
 
-
 <%= render partial: "professional_card", collection: @professionals, as: :professional %>
 <div class="col-12 d-flex justify-content-center">
   <%== pagy_bootstrap_nav(@pagy) %>

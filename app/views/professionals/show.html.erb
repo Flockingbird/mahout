@@ -1,3 +1,15 @@
+<%- content_for(:title, "Get in contact with #{@professional.name}") %>
+<%- content_for(:meta_description, "#{@professional.name} contact details.") %>
+
+<% content_for :og_tags do %>
+  <meta property="og:title" content="<%= title %>" />
+  <meta property="og:description" content="<%= meta_description %>" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:image" content="<%= @professional.avatar_with_fallback(resize_to_limit: [100, 100]) %>" />
+  <meta property="og:profile:first_name" content="<%= @professional.name %>" />
+<% end %>
+
 <%- content_for(:active_breadcrumb_label, @professional.name) %>
 
 <div class="col-md-8 col-12 professional-detail border rounded-top">
