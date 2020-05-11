@@ -12,14 +12,9 @@
     <% end %>
 
     <div class="col-4">
-      <% if @professional.avatar.attached? %>
-        <%= image_tag(
-          @professional.avatar.variant(resize_to_limit: [100, 100]),
-          class: 'rounded-circle avatar'
-        ) %>
-     <% else %>
-       <%= image_tag(:default_avatar, class: 'rounded-circle avatar') %>
-     <% end %>
+      <%= image_tag(
+        @professional.avatar_with_fallback(resize_to_limit: [100, 100]),
+        class: 'rounded-circle avatar') %>
     </div>
     <div class="col-8 pt-1 text-right">
       <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i></button>

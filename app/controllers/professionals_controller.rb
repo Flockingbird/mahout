@@ -7,14 +7,17 @@ class ProfessionalsController < ApplicationController
 
   def index
     @catalyst_placement = :header
-    @pagy, @professionals = paged
+    @pagy, resources = paged
+    @professionals = decorate(resources, ProfileViewModel)
   end
 
   def show
     @catalyst_placement = :aside
-    @professional = resource
-    @contact_details = decorate(resource.contact_details,
-                                Profile::ContactDetailViewModel)
+    @professional = decorate(resource, ProfileViewModel)
+    @contact_details = decorate(
+      resource.contact_details,
+      ProfileViewModel::ContactDetailViewModel
+    )
   end
 
   private
