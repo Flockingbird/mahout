@@ -83,4 +83,26 @@ class ViewProfessionalTest < ApplicationSystemTestCase
     assert_match(/default_avatar.*\.png/, open_graph.data['image'])
     assert_equal page.current_url, open_graph.data['url']
   end
+
+  ##
+  # As a participant, when a bot indexes the page,
+  # then I want it to get high in the results and show relevant results
+  # so that I show up when people search for me.
+  test 'bot checks detail page for semantic data' do
+    visit root_url
+    click_link 'Harry Potter'
+
+    within('div[itemscope][itemtype="http://schema.org/Person"]') do
+      assert_selector('h4[itemprop="name"]', text: 'Harry Potter')
+      assert_selector('img[itemprop="image"]')
+      assert_selector('p[itemprop="description"]', text: /beef/)
+      within('span[itemprop="homeLocation"][itemscope][itemtype="http://schema.org/Location"]') do
+        assert_selector('span[itemprop="name"]', text: 'Little Whinging')
+      end
+      within('span[itemprop="worksFor"][itemscope][itemtype="http://schema.org/Organisation"]') do
+        assert_selector('span[itemprop="name"]', text: 'Ministry of Magic')
+      end
+      assert_selector('a[itemprop="url"]', text: 'http://ministry.gov.wz')
+    end
+  end
 end

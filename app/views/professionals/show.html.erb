@@ -12,7 +12,9 @@
 
 <%- content_for(:active_breadcrumb_label, @professional.name) %>
 
-<div class="col-md-8 col-12 professional-detail border rounded-top">
+<div
+   itemscope itemtype="http://schema.org/Person"
+   class="col-md-8 col-12 professional-detail border rounded-top">
   <div class="row">
     <% if @professional.header.attached? %>
       <%= image_tag(
@@ -26,7 +28,8 @@
     <div class="col-4">
       <%= image_tag(
         @professional.avatar_with_fallback(resize_to_limit: [100, 100]),
-        class: 'rounded-circle avatar') %>
+        class: 'rounded-circle avatar',
+        itemprop: 'image') %>
     </div>
     <div class="col-8 pt-1 text-right">
       <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i></button>
@@ -36,29 +39,36 @@
     </div>
 
     <div class="col-12">
-      <h4 class="title">
+      <h4 class="title" itemprop="name">
         <%= @professional.name %>
       </h4>
       <% if @professional.bio %>
-        <p class="font-weight-light">
+        <p itemprop="description" class="font-weight-light">
           <%= simplified_format(@professional.bio) %>
         </p>
       <% end %>
 
       <p class="text-muted inline-attributes">
       <% if @professional.location %>
-        <span class="inline-attribute-item">
-        <i class="fas fa-map-marker"></i> <%= @professional.location %>
+        <span 
+         itemprop="homeLocation" itemscope itemtype="http://schema.org/Location"
+          class="inline-attribute-item">
+          <i class="fas fa-map-marker"></i>
+          <span itemprop="name"><%= @professional.location %></span>
         </span>
       <% end %>
       <% if @professional.company_name %>
-        <span class="inline-attribute-item">
-        <i class="fas fa-briefcase"></i> <%= @professional.company_name %>
+        <span 
+          itemprop="worksFor" itemscope itemtype="http://schema.org/Organisation"
+          class="inline-attribute-item">
+          <i class="fas fa-briefcase"></i>
+          <span itemprop="name"><%= @professional.company_name %></span>
         </span>
       <% end %>
       <% if @professional.url %>
         <span class="inline-attribute-item">
-        <i class="fas fa-link"></i> <%= link_to nil, @professional.url %>
+          <i class="fas fa-link"></i>
+          <%= link_to(nil, @professional.url, itemprop: 'url') %>
         </span>
       <% end %>
       </p>
