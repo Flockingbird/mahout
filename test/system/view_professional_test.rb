@@ -66,7 +66,8 @@ class ViewProfessionalTest < ApplicationSystemTestCase
     click_link 'Harry Potter'
 
     title = 'Get in contact with Harry Potter'
-    description = 'Harry Potter contact details.'
+    description = 'Had some beef with a snakey guy,'\
+                  ' now proud father and civil servant'
 
     assert_equal title, page.title
     assert_selector(
