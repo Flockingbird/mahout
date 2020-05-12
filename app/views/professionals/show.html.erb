@@ -51,7 +51,7 @@
       <p class="text-muted inline-attributes">
       <% if @professional.location %>
         <span 
-         itemprop="homeLocation" itemscope itemtype="http://schema.org/Location"
+         itemprop="homeLocation" itemscope itemtype="http://schema.org/Place"
           class="inline-attribute-item">
           <i class="fas fa-map-marker"></i>
           <span itemprop="name"><%= @professional.location %></span>
@@ -59,7 +59,7 @@
       <% end %>
       <% if @professional.company_name %>
         <span 
-          itemprop="worksFor" itemscope itemtype="http://schema.org/Organisation"
+          itemprop="worksFor" itemscope itemtype="http://schema.org/Organization"
           class="inline-attribute-item">
           <i class="fas fa-briefcase"></i>
           <span itemprop="name"><%= @professional.company_name %></span>

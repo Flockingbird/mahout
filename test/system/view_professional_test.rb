@@ -96,10 +96,12 @@ class ViewProfessionalTest < ApplicationSystemTestCase
       assert_selector('h4[itemprop="name"]', text: 'Harry Potter')
       assert_selector('img[itemprop="image"]')
       assert_selector('p[itemprop="description"]', text: /beef/)
-      within('span[itemprop="homeLocation"][itemscope][itemtype="http://schema.org/Location"]') do
+      within('span[itemprop="homeLocation"]'\
+             '[itemscope][itemtype="http://schema.org/Place"]') do
         assert_selector('span[itemprop="name"]', text: 'Little Whinging')
       end
-      within('span[itemprop="worksFor"][itemscope][itemtype="http://schema.org/Organisation"]') do
+      within('span[itemprop="worksFor"]'\
+             '[itemscope][itemtype="http://schema.org/Organization"]') do
         assert_selector('span[itemprop="name"]', text: 'Ministry of Magic')
       end
       assert_selector('a[itemprop="url"]', text: 'http://ministry.gov.wz')
