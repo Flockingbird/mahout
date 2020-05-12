@@ -58,31 +58,38 @@ module PublicHelper
   private
 
   def formatted_contact_detail_value_email(contact_detail)
-    mail_to(contact_detail.value)
+    content_tag(:span, mail_to(contact_detail.value), itemprop: 'email')
   end
 
   def formatted_contact_detail_value_phone(contact_detail)
-    link_to(contact_detail.value, "tel:#{contact_detail.value}")
+    link_to(
+      contact_detail.value,
+      "tel:#{contact_detail.value}",
+      itemprop: 'telephone'
+    )
   end
 
   def formatted_contact_detail_value_twitter(contact_detail)
     link_to(
       "@#{contact_detail.value}",
-      "https://twitter.com/#{contact_detail.value}"
+      "https://twitter.com/#{contact_detail.value}",
+      itemprop: 'url'
     )
   end
 
   def formatted_contact_detail_value_facebook(contact_detail)
     link_to(
       contact_detail.value,
-      "https://www.facebook.com/#{contact_detail.value}"
+      "https://www.facebook.com/#{contact_detail.value}",
+      itemprop: 'url'
     )
   end
 
   def formatted_contact_detail_value_linkedin(contact_detail)
     link_to(
       contact_detail.value,
-      "https://linkedin.com/#{contact_detail.value}"
+      "https://linkedin.com/#{contact_detail.value}",
+      itemprop: 'url'
     )
   end
 end

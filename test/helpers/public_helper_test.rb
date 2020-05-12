@@ -42,28 +42,35 @@ class PublicHelperTest < ActionView::TestCase
 
   test 'formatted_contact_detail_value with email is mailto link' do
     cd = contact_detail(value: 'm@example.com', type: 'email')
-    assert_equal '<a href="mailto:m@example.com">m@example.com</a>',
+    assert_equal '<span itemprop="email">'\
+                 '<a href="mailto:m@example.com">m@example.com</a></span>',
                  formatted_contact_detail_value(cd)
   end
   test 'formatted_contact_detail_value with phone is tel: link' do
     cd = contact_detail(value: '112', type: 'phone')
-    assert_equal '<a href="tel:112">112</a>',
+    assert_equal '<a itemprop="telephone" href="tel:112">112</a>',
                  formatted_contact_detail_value(cd)
   end
   test 'formatted_contact_detail_value with twitter is @value url' do
     cd = contact_detail(value: 'berkes', type: 'twitter')
-    assert_equal '<a href="https://twitter.com/berkes">@berkes</a>',
-                 formatted_contact_detail_value(cd)
+    assert_equal(
+      '<a itemprop="url" href="https://twitter.com/berkes">@berkes</a>',
+      formatted_contact_detail_value(cd)
+    )
   end
   test 'formatted_contact_detail_value with facebook is value url' do
     cd = contact_detail(value: 'berkes', type: 'facebook')
-    assert_equal '<a href="https://www.facebook.com/berkes">berkes</a>',
-                 formatted_contact_detail_value(cd)
+    assert_equal(
+      '<a itemprop="url" href="https://www.facebook.com/berkes">berkes</a>',
+      formatted_contact_detail_value(cd)
+    )
   end
   test 'formatted_contact_detail_value with linkedin is value url' do
     cd = contact_detail(value: 'berkes', type: 'linkedin')
-    assert_equal '<a href="https://linkedin.com/berkes">berkes</a>',
-                 formatted_contact_detail_value(cd)
+    assert_equal(
+      '<a itemprop="url" href="https://linkedin.com/berkes">berkes</a>',
+      formatted_contact_detail_value(cd)
+    )
   end
   test 'when unkown or other type, renders normal value' do
     cd = contact_detail(value: 'Kerkstraat 12', type: 'postal')

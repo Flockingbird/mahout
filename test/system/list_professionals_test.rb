@@ -86,4 +86,22 @@ class ListProfessionalsTest < ApplicationSystemTestCase
     assert_match(/catalyst_logo-.*\.png/, open_graph.image.url)
     assert_equal page.current_url, open_graph.url
   end
+
+  ##
+  # As a catalyst, when a bot indexes any page,
+  # then I want it to get high in the results and show relevant results
+  # so that I show up when people search for me.
+  test 'bot checks catalyst header for semantic data' do
+    visit root_url
+
+    within('header[itemscope][itemtype="http://schema.org/Organization"]') do
+      assert_selector('h1[itemprop="name"]', text: 'Catalyst Inc.')
+      assert_selector('img[itemprop="logo"]')
+      assert_selector('span[itemprop="telephone"]', text: '+31 6 12345678')
+      assert_selector('span[itemprop="email"]', text: 'contact@example.com')
+      assert_selector('span[itemprop="address"]',
+                      text: 'Stationsplein 26, Nijmegen, the Netherlands')
+      assert_selector('a[itemprop="url"]', text: 'https://cataly.st')
+    end
+  end
 end
